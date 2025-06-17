@@ -5,6 +5,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect src/index.js",
+    "watch": "nodemon --watch src/resources/scss/app.scss --output src/public/css",
+    "build": "sass src/styles:public/styles --no-source-map",
+    "build:watch": "sass --watch src/styles:public/styles --no-source-map",
+    "build:dev": "sass --watch src/styles:public/styles --no-source-map --poll",
+    "build:prod": "sass src/styles:public/styles --no-source-map --style=compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,7 +30,8 @@
   "homepage": "https://github.com/xuanhiepwork/nodejs-blog#readme",
   "dependencies": {
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.3"
+    "express-handlebars": "^8.0.3",
+    "sass": "^1.89.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

@@ -1,28 +1,31 @@
-const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const handlebars = require ('express-handlebars');
+const exphbs = require('express-handlebars').engine;
 const app = express();
 const port = 3000;
 
-//HTTP logger
+app.use(express.static(path.join(__dirname, 'public'))); // Để sử dụng các file tĩnh như css, js, images
+
+// HTTP logger
 app.use(morgan('combined'));
 
-//Template engine
-app.engine('hbs', handlebars({ 
-  extname: '.hbs'
-})); //app('đặt tên', gọi thư viện)
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+// Template engine
+app.engine('handlebars', exphbs({ 
+  extname: '.hbs',
+}));//app('đặt tên', gọi thư viện)
+app.set('view engine', 'handlebars');
 
+// Được định nghĩa là route - và đây là arrow function
 app.get('/', (req, res) => {
-  res.render('home');
-});
+    res.send('Hello World!');
+})
 
-app.get('/news', (req, res) => {
-  res.render('news');
-});
+app.get('/tin-tuc', (req, res) => {
+    res.send('Tin tức');
+})
 
+
+// 127.0.0.1
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-});
+    console.log(`Example app listening at http://localhost:${port}`);
+})

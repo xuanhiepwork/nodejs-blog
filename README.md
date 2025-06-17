@@ -22,7 +22,13 @@ npm i morgan --save-dev
 npm install express-handlebars
 ```
 
+5. Run
+```
+npm start
+npm run watch
+```
+
 NOTE:
 ```
-video thứ 9, lỗi phút 15, coi tới phút 24
+video thứ 10, lỗi phút 15, coi tới phút --
 ```
