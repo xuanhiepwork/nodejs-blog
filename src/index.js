@@ -18,14 +18,20 @@ app.set('view engine', 'handlebars');
 // Được định nghĩa là route - và đây là arrow function
 app.get('/', (req, res) => {
     res.send('Hello World!');
-})
+});
 
 app.get('/tin-tuc', (req, res) => {
     res.send('Tin tức');
-})
+});
+
+app.get('/Search', (req, res) => {
+    //localhost:3000/search ?q=f8 lap trinh &ref=mycv &author=sondn
+    console.log(req.query.q); // Lấy giá trị của tham số truy vấn 'q'
+    res.send('Search');
+});
 
 
 // 127.0.0.1
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
-})
+});

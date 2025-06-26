@@ -28,7 +28,13 @@ npm start
 npm run watch
 ```
 
+##Bai hoc
+Query parameters
+localhost:3000/search ?q=f8 lap trinh &ref=mycv &author=sondn
+Lần đầu: ?q=
+Lần hai trở đi: &
+
 NOTE:
 ```
-video thứ 10, lỗi phút 15, coi tới phút --
+video thứ 14, coi tới phút --
 ```
