@@ -36,5 +36,5 @@ Lần hai trở đi: &
 
 NOTE:
 ```
-video thứ 14, coi tới phút --
+video thứ 16, coi tới phút 05
 ```
