@@ -1,10 +1,16 @@
 const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars').engine;
-const app = express();
-const port = 3000;
+
 
 const route = require('./routes'); // Import route module
+const db = require('./config/db'); // Import database configuration
+
+//Connect to DB
+db.connect(); // Call the connect function from db module
+
+const app = express();
+const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public'))); // Để sử dụng các file tĩnh như css, js, images
 
@@ -42,7 +48,6 @@ route(app) {
         res.send('Search');
     });
 }
-
 
 
 //local host --- hosting

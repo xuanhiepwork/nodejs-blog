@@ -34,7 +34,33 @@ localhost:3000/search ?q=f8 lap trinh &ref=mycv &author=sondn
 Lần đầu: ?q=
 Lần hai trở đi: &
 
+##MongoDB
+Port mặc định của mongoDB, dùng để kết nối
+```
+mongodb://127.0.0.1:27017
+```
+
+###Thư viện dùng thêm
+
+##1.Prettier
+##2.lint-staged
+##3.husky
+```
+npm i prettier lint-staged husky --save-dev
+```
+#chạy:
+```
+npm run beautiful
+```
+###Model
+thư viện mongoose
+```
+npm install mongoose
+```
+
+###Schema github, để tìm thư viện
+
 NOTE:
 ```
-video thứ 19, coi tới phút 33
+video thứ 23, coi tới phút 14'41
 ```
