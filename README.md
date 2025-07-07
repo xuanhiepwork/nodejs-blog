@@ -59,8 +59,9 @@ npm install mongoose
 ```
 
 ###Schema github, để tìm thư viện
+###Handlebarjs, thư viện
 
 NOTE:
 ```
-video thứ 23, coi tới phút 14'41
+video thứ 26 - [CRUD] Read from DB, coi tới phút 5'
 ```
