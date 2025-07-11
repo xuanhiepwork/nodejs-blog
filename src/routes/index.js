@@ -1,26 +1,19 @@
 const newsRouter = require('./news');
+const coursesRouter = require('./courses');
 const siteRouter = require('./site');
 
 
 function route(app) {
 
-    app.use('/news', newsRouter); // Sử dụng router cho /news
-
-    // app.get('/Search', (req, res) => {
-    //     res.send('Search');
-    // });
+    app.use('/news', newsRouter);
+    app.use('/courses', coursesRouter);
     
-    // app.post('/Search', (req, res) => {
-    //     console.log(req.body);
-    //     res.send('Search');
-    // })
+    app.use('/', siteRouter); //Trang gốc thì luôn để cuối cùng, nó sẽ đi qua từng thằng, khớp thằng nào thì sẽ dùng lại ở đó
     
     // Đã chuyển sang sử dụng siteRouter
     // app.get('/', (req,res) => {
     //     res.send('Home');
     // });
-
-    app.use('/', siteRouter); //Trang gốc thì luôn để cuối cùng, nó sẽ đi qua từng thằng, khớp thằng nào thì sẽ dùng lại ở đó
 }
 
 module.exports = route;

@@ -63,5 +63,5 @@ npm install mongoose
 
 NOTE:
 ```
-video thứ 26 - [CRUD] Read from DB, coi tới phút 5'
+video thứ 27 - Course detail page, coi tới phút 8:31
 ```

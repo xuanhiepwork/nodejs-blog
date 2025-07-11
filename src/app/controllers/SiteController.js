@@ -1,3 +1,4 @@
+
 const Course = require('../models/Course');
 const { mutipleMongooseToObject } = require('../../util/mongoo');
 
@@ -5,7 +6,6 @@ const { mutipleMongooseToObject } = require('../../util/mongoo');
 class SiteController {
 
     // [GET] /
-
     index(req, res, next) {
         Course.find({}, function(err, courses) {
             if(!err) {
