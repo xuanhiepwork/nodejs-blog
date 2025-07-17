@@ -61,7 +61,14 @@ npm install mongoose
 ###Schema github, để tìm thư viện
 ###Handlebarjs, thư viện
 
+
+## thư viện mongoose slug generator
+```
+npm install mongoose-slug-generator --save
+```
+
+
 NOTE:
 ```
-video thứ 27 - Course detail page, coi tới phút 8:31
+video thứ 28 - [CRUD] Create new course, coi tới phút 8:31
 ```

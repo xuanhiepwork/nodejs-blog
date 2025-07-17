@@ -1,2 +1,21 @@
 
 <h1>Courses detail</h1>
+
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-3">
+            <button>Học ngay</button>
+            <ul>
+                <li>{{Course.level}}</li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
+        <div class="col-lg-3">
+            <h2>{{Course.name}}</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{Course.videoId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>{{Course.description}}</p>
+        </div>
+    </div>
+</div>
