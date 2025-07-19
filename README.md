@@ -70,5 +70,5 @@ npm install mongoose-slug-generator --save
 
 NOTE:
 ```
-video thứ 28 - [CRUD] Create new course, coi tới phút 8:31
+video thứ 29 - [CRUD] Update course, coi tới phút 26:24
 ```

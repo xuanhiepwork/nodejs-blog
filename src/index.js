@@ -30,6 +30,9 @@ app.engine(
     'handlebars', 
     exphbs({ 
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b, // Ví dụ về helper để tính tổng
+        },
     })
 );//app('đặt tên', gọi thư viện)
 app.set('view engine', 'handlebars');

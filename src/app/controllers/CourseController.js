@@ -46,6 +46,17 @@ class CourseController {
             
         res.send('Course created successfully'); // trả về thông báo thành công
     }
+
+    // [GET] /courses/:id/edit
+    create(req, res, next) {
+        Course.findById(req.params.id)
+            .then(course => {
+                res.render('courses/edit', { 
+                    course: mongooseToObject(course) 
+                }); // render view edit với dữ liệu course
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new CourseController();

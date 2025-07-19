@@ -1,0 +1,45 @@
+
+<div class="mt-4">
+    <h3>Khóa học của tôi</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên khóa học</th>
+                <th scope="col">Trình độ</th>
+                <th scope="col" colspan="2">Thời gian tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href="/courses/{{this.slug}}" class="btn btn-primary">Xem</a>
+                    <a href="/courses/{{this._id}}/edit" class="btn btn-secondary">Sửa</a>
+                    <form action="/courses/{{this._id}}/delete" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+
+            {{!-- {{#each courses}}
+            <tr>
+                <th scope="row">{{@index}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td>
+                    <a href="/courses/{{this.slug}}" class="btn btn-primary">Xem</a>
+                    <a href="/courses/edit/{{this._id}}" class="btn btn-secondary">Sửa</a>
+                    <form action="/courses/delete/{{this._id}}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}} --}}
+        </tbody>
+</div>
