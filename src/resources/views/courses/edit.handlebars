@@ -1,8 +1,8 @@
 
 <div class="mt-4">
-    <h3>Tạo trang</h3>
+    <h3>Cập nhật khóa học</h3>
 
-    <form class="mt-4" method="POST" action="/courses/{{course._id}}">
+    <form class="mt-4" method="POST" action="/courses/{{course._id}}?_method=PUT">
         <div class="form-group">
             <label for="name">Tên khóa học</label>
             <input type="text" class="form-control" value="{{course.name}}" id="name" name="name" >

@@ -1,6 +1,7 @@
 const path = require('path'); // Thư viện để xử lý đường dẫn
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override'); // Thư viện để hỗ trợ các phương thức HTTP khác ngoài GET và POST
 const exphbs = require('express-handlebars').engine;
 
 
@@ -21,6 +22,8 @@ app.use(
         extended: true
 })); // Để sử dụng các tham số truy vấn từ form
 app.use(express.json());
+
+app.use(methodOverride('_method')); // Thư viện để hỗ trợ các phương thức HTTP khác ngoài GET và POST
 
 // HTTP logger
 // app.use(morgan('combined'));

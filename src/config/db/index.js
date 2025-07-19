@@ -6,8 +6,9 @@ function connectDB() {
 
     try {
         await mongoose.connect('mongodb://localhost:27017/f8_education_dev', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            useNewUrlParser: true, 
+            useUnifiedTopology: true, // Sử dụng unified topology để kết nối MongoDB
+            useCreateIndex: true, 
         });
         console.log('Connected to MongoDB successfully');
     } catch(error) {

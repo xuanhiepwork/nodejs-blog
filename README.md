@@ -28,43 +28,48 @@ npm start
 npm run watch
 ```
 
-##Bai hoc
+## Bai hoc
 Query parameters
 localhost:3000/search ?q=f8 lap trinh &ref=mycv &author=sondn
 Lần đầu: ?q=
 Lần hai trở đi: &
 
-##MongoDB
+## MongoDB
 Port mặc định của mongoDB, dùng để kết nối
 ```
 mongodb://127.0.0.1:27017
 ```
 
-###Thư viện dùng thêm
+### Thư viện dùng thêm
 
-##1.Prettier
-##2.lint-staged
-##3.husky
+## 1.Prettier
+## 2.lint-staged
+## 3.husky
 ```
 npm i prettier lint-staged husky --save-dev
 ```
-#chạy:
+# chạy:
 ```
 npm run beautiful
 ```
-###Model
+### Model
 thư viện mongoose
 ```
 npm install mongoose
 ```
 
-###Schema github, để tìm thư viện
-###Handlebarjs, thư viện
+### Schema github, để tìm thư viện
+### Handlebarjs, thư viện
 
 
 ## thư viện mongoose slug generator
 ```
 npm install mongoose-slug-generator --save
+```
+
+## thư viện chuyển post thành push | Thư viện để hỗ trợ các phương thức HTTP khác ngoài GET và POST
+```
+npm install method-override
 ```
 
 

@@ -4,8 +4,10 @@ const router = express.Router();
 const courseController = require('../app/controllers/CoursesController');
 
 router.get('/create', courseController.create);
-router.get('/store', courseController.show);
-router.get('/:id/edit', courseController.show);
+router.post('/store', courseController.store);
+router.get('/:id/edit', courseController.edit);
+router.put('/:id', courseController.update);
+router.delete('/:id', courseController.destroy);
 router.get('/:slug', courseController.show);
 
 

@@ -48,7 +48,7 @@ class CourseController {
     }
 
     // [GET] /courses/:id/edit
-    create(req, res, next) {
+    edit(req, res, next) {
         Course.findById(req.params.id)
             .then(course => {
                 res.render('courses/edit', { 
@@ -56,6 +56,21 @@ class CourseController {
                 }); // render view edit với dữ liệu course
             })
             .catch(next);
+    }
+
+    // [PUT] /courses/:id
+    update(req, res, next) {
+        Course.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/me/stored/courses')) // nếu cập nhật thành công thì chuyển hướng về trang danh sách khóa học đã lưu
+            .catch(next); // nếu có lỗi thì chuyển sang middleware xử lý lỗi
+    }
+
+    // [DELETE] /courses/:id
+    destroy(req, res, next) { 
+        //Promise
+        Course.deleteOne({ _id: req.params.id }) // xóa khóa học theo id
+            .then(() => res.redirect('back')) // nếu xóa thành công thì chuyển hướng về trang trước đó
+            .catch(next); // nếu có lỗi thì chuyển sang middleware xử lý lỗi
     }
 }
 
