@@ -72,8 +72,20 @@ npm install mongoose-slug-generator --save
 npm install method-override
 ```
 
+## thư viện Mongoose Delete Plugin để dùng cho soft delete
+```
+npm i mongoose-delete
+```
+# đọc những cái Features để hiểu phương thức của nó
+
+
+### Các phương thức
+# 1.Create -> POST
+# 2.Update -> PUT (update nhiều phiêu), PATH (update một phiêu)
+# 3.Delete -> DELETE
+# 4.Read -> GET
 
 NOTE:
 ```
-video thứ 29 - [CRUD] Update course, coi tới phút 26:24
+video thứ 31 - Soft delete?, coi tới phút 11:30
 ```

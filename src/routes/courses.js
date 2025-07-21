@@ -7,6 +7,7 @@ router.get('/create', courseController.create);
 router.post('/store', courseController.store);
 router.get('/:id/edit', courseController.edit);
 router.put('/:id', courseController.update);
+router.patch('/:id/restore', courseController.restore); // Sử dụng phương thức PATCH để khôi phục khóa học
 router.delete('/:id', courseController.destroy);
 router.get('/:slug', courseController.show);
 

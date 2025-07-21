@@ -1,7 +1,8 @@
 
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+const mongooseDelete = require('mongoose-delete');
+
 
 const Schema = require('mongoose').Schema;
 
@@ -17,5 +18,12 @@ const Course = new Schema({
 }, {
     timestamps: true, // tự động tạo trường createdAt và updatedAt
 })
+
+// Add plugins
+mongoose.plugin(slug);
+Course.plugin(mongooseDelete, {
+    deletedAt: true, // sử dụng trường deletedAt để lưu thời gian xóa
+    overrideMethods: 'all', // sử dụng tất cả các phương thức của mongoose để xử lý xóa);
+});
 
 module.exports = mongoose.model('Course', Course);

@@ -64,12 +64,26 @@ class CourseController {
             .then(() => res.redirect('/me/stored/courses')) // nếu cập nhật thành công thì chuyển hướng về trang danh sách khóa học đã lưu
             .catch(next); // nếu có lỗi thì chuyển sang middleware xử lý lỗi
     }
+ 
+    // [DELETE] /courses/:id | Code chay
+    // destroy(req, res, next) { 
+    //     //Promise
+    //     Course.deleteOne({ _id: req.params.id }) // xóa khóa học theo id
+    //         .then(() => res.redirect('back')) // nếu xóa thành công thì chuyển hướng về trang trước đó
+    //         .catch(next); // nếu có lỗi thì chuyển sang middleware xử lý lỗi
+    // }
 
-    // [DELETE] /courses/:id
+    // [DELETE] /courses/:id | Sử dụng thư viện Mongoose Delete Plugin để dùng cho soft delete
     destroy(req, res, next) { 
-        //Promise
-        Course.deleteOne({ _id: req.params.id }) // xóa khóa học theo id
-            .then(() => res.redirect('back')) // nếu xóa thành công thì chuyển hướng về trang trước đó
+        Course.delete({ _id: req.params.id })
+            .then(() => res.redirect('back')) 
+            .catch(next); 
+    }
+
+    // [PATCH] /courses/:id/resotre
+    restored(req, res, next) {
+        Course.restore({ _id: req.params.id }) // khôi phục khóa học đã xóa mềm
+            .then(() => res.redirect('back')) // nếu khôi phục thành công thì chuyển hướng về trang trước đó
             .catch(next); // nếu có lỗi thì chuyển sang middleware xử lý lỗi
     }
 }
