@@ -87,5 +87,9 @@ npm i mongoose-delete
 
 NOTE:
 ```
-video thứ 31 - Soft delete?, coi tới phút 11:30
+video thứ 32 - Deleted count documents, coi tới phút 20s
 ```
+
+
+
+Tạo một con AI, cập nhật các tin tức về lĩnh vực [...] trên thế giới, cập nhật về thị trường [...] trên thế giới của ngày hôm nay

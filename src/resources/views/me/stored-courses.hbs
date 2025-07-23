@@ -2,7 +2,12 @@
 <div class="mt-4">
     <div>
       <h3>Khóa học của tôi</h3>
-      <a href="/me/trash/couses">Thùng rác</a>
+      {{!-- Ẩn đi khi thùng rác không có gì --}}
+      {{!-- {{#if deletedCount}} 
+      <a href="/me/trash/couses">Thùng rác ({{deletedCount}})</a>
+      {{/if}} --}}
+
+      <a href="/me/trash/couses">Thùng rác ({{deletedCount}})</a>
     </div>
 
     <table class="table table-striped">

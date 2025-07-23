@@ -29,22 +29,17 @@ class CourseController {
 
     // [POST] /courses/:store
     store(req, res, next) {
-        const formData = req.body; // lấy dữ liệu từ form gửi lên
-        // res.json(req.body); // trả về dữ liệu từ form dưới dạng JSON | body là dữ liệu được gửi từ client(form)
-        // req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`; // tạo đường dẫn hình ảnh từ videoId
-        formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`; // tạo đường dẫn hình ảnh từ videoId
-        
-        //const course = new Course(req.body); // tạo một đối tượng Course mới từ dữ liệu gửi lên
-        const course = new Course(formData); // tạo một đối tượng Course mới từ dữ liệu gửi lên
-        
-        course.save() // lưu đối tượng Course vào cơ sở dữ liệu
-            .then(() => res.redirect('/')) // nếu lưu thành công thì chuyển hướng về trang chủ
+        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`; // tạo đường dẫn hình ảnh từ videoId
+        const course = new Course(req.body); // tạo một đối tượng Course mới từ dữ liệu gửi lên
+        course
+            .save() // lưu đối tượng Course vào cơ sở dữ liệu
+            .then(() => res.redirect('/me/stored/courses')) 
             .catch(error => {
-                console.error(error); // in lỗi ra console
+                console.error(error); 
                 res.status(500).send('Error saving course'); // trả về lỗi 500 nếu có lỗi
             });
             
-        res.send('Course created successfully'); // trả về thông báo thành công
+        res.send('Course created successfully'); 
     }
 
     // [GET] /courses/:id/edit
@@ -80,11 +75,18 @@ class CourseController {
             .catch(next); 
     }
 
+    // [DELETE] /courses/:id/force
+    forceDestroy(req, res, next) {
+        Course.deleteOne({ _id: req.params.id }) // xóa vĩnh viễn khóa học theo id
+            .then(() => res.redirect('back')) 
+            .catch(next); 
+    }
+
     // [PATCH] /courses/:id/resotre
     restored(req, res, next) {
         Course.restore({ _id: req.params.id }) // khôi phục khóa học đã xóa mềm
-            .then(() => res.redirect('back')) // nếu khôi phục thành công thì chuyển hướng về trang trước đó
-            .catch(next); // nếu có lỗi thì chuyển sang middleware xử lý lỗi
+            .then(() => res.redirect('back')) 
+            .catch(next); 
     }
 }
 
