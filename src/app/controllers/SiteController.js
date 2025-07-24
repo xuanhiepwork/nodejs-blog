@@ -5,8 +5,10 @@ const { mutipleMongooseToObject } = require('../../util/mongoo');
 
 class SiteController {
 
-    // [GET] /
+    // [GET] 
     index(req, res, next) {
+
+        // Cách 1: callback pattern
         Course.find({}, function(err, courses) {
             if(!err) {
                 res.json(courses); //kh ông có lỗi thì trả về courses
@@ -16,7 +18,7 @@ class SiteController {
             }
         })
 
-        //Promise version
+        // Cách 2: Promise version | sử dụng then/catch -> Promise
         Course.find({})
             .then(courses => 
             {

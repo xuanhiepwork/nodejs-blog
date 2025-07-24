@@ -40,19 +40,19 @@ Port mặc định của mongoDB, dùng để kết nối
 mongodb://127.0.0.1:27017
 ```
 
-### Thư viện dùng thêm
+## Thư viện dùng thêm
 
-## 1.Prettier
-## 2.lint-staged
-## 3.husky
+1. Prettier
+2. lint-staged
+3. husky
 ```
 npm i prettier lint-staged husky --save-dev
 ```
-# chạy:
+## Chạy:
 ```
 npm run beautiful
 ```
-### Model
+## Model
 thư viện mongoose
 ```
 npm install mongoose
@@ -62,34 +62,30 @@ npm install mongoose
 ### Handlebarjs, thư viện
 
 
-## thư viện mongoose slug generator
+### Thư viện mongoose slug generator
 ```
 npm install mongoose-slug-generator --save
 ```
 
-## thư viện chuyển post thành push | Thư viện để hỗ trợ các phương thức HTTP khác ngoài GET và POST
+### Thư viện chuyển post thành push | Thư viện để hỗ trợ các phương thức HTTP khác ngoài GET và POST
 ```
 npm install method-override
 ```
 
-## thư viện Mongoose Delete Plugin để dùng cho soft delete
+### Thư viện Mongoose Delete Plugin để dùng cho soft delete
 ```
 npm i mongoose-delete
 ```
-# đọc những cái Features để hiểu phương thức của nó
+### đọc những cái Features để hiểu phương thức của nó
 
 
-### Các phương thức
-# 1.Create -> POST
-# 2.Update -> PUT (update nhiều phiêu), PATH (update một phiêu)
-# 3.Delete -> DELETE
-# 4.Read -> GET
+## Các phương thức
+1. Create -> POST
+2. Update -> PUT (update nhiều phiêu), PATH (update một phiêu)
+3. Delete -> DELETE
+4. Read -> GET
 
-NOTE:
+# NOTE:
 ```
-video thứ 32 - Deleted count documents, coi tới phút 20s
+video thứ 32 - "Select all" with checkbox, coi tới phút 28:22
 ```
-
-
-
-Tạo một con AI, cập nhật các tin tức về lĩnh vực [...] trên thế giới, cập nhật về thị trường [...] trên thế giới của ngày hôm nay

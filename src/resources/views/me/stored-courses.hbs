@@ -8,12 +8,34 @@
       {{/if}} --}}
 
       <a href="/me/trash/couses">Thùng rác ({{deletedCount}})</a>
+      
+      <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+          <label class="form-check-label" for="checkbox-all">
+            Chọn tất cả
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+          <label class="form-check-label" for="defaultCheck2">
+            Disabled checkbox
+          </label>
+        </div>
+
+        <select class="form-control form-control-sm checkbox-select-all-options " id="">
+          <option>-- Hành động --</option>
+          <option value="delete">Xóa</option>
+        </select>
+
+        <button class="btn btn-primary btn-sm check-all-submit-btn disabled">Thực hiện</button>
+      </div>
     </div>
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col" colspan="2">#</th>
                 <th scope="col">Tên khóa học</th>
                 <th scope="col">Trình độ</th>
                 <th scope="col" colspan="2">Thời gian tạo</th>
@@ -22,6 +44,12 @@
         <tbody>
             {{#each courses}}
             <tr>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
+                  </div>
+                </td>
+
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
                 <td>{{this.level}}</td>
@@ -90,6 +118,9 @@
         var courseID;
         var deleteForm = document.forms['delete-course-form'];
         var btnDeleteCourse = document.getElementById('btn-delete-course');
+        var checkboxAll = $('#checkbox-all');
+        var courseItemCheckbox = $('input[name="courseIds[]"]');
+        var checkAllSubmitBtn = $('.check-all-submit-btn');
         
         // When dialog confirm clicked, it should send a DELETE request to the server
         $('#delete-course-modal').on('show.bs.modal', function (event) {
@@ -103,6 +134,46 @@
             //alert(courseID); // Thông báo xóa thành công
             deleteForm.action = '/courses/' + courseID + '?_method=DELETE'; // Set action to the form
             deleteForm.submit(); 
+        }
+
+
+        // Checkbox all change | Handle the checkbox "Select All" functionality
+        // Cách 1: Làm bth
+        checkboxAll.on('change', function() {
+            var isChecked = $(this).is(':checked');
+            $('input[name="courseIds[]"]').prop('checked', isCheckedAll);
+        });
+
+        //Cách 2: jQuery
+        checkboxAll.change(function() {
+            var isChecked = $(this).prop('checked');
+
+            courseItemCheckbox.prop('checked', isCheckedAll);
+            // Giải thích cho dòng ở trên | Toggle the "Select All" checkbox based on the state of individual checkboxes
+            //if (isCheckedAll) {
+                //courseItemCheckbox.prop('checked', true);
+            //} else {
+                //courseItemCheckbox.prop('checked', false);
+            //}
+
+            renderCheckAllSubmitBtn(); 
+        });
+
+        // Course item checkbox click event
+        courseItemCheckbox.on('change', function() {
+            var isCheckedAll = courseItemCheckbox.length === courseItemCheckbox.filter(':checked').length; // Số lượng checkbox được chọn bằng tổng số checkbox | Nếu không thì sẽ disable nút "Thực hiện" chọn tất cả
+            checkboxAll.prop('checked', isCheckedAll);
+        });
+
+        // Re-render the "Select All" button based on the state of individual checkboxes
+        function renderCheckAllSubmitBtn() {
+            var checkedCount = courseItemCheckbox.length === courseItemCheckbox.filter(':checked').length;
+            //var submitButton = $('.checkbox-select-all-options + .btn');
+            if (checkedCount > 0) {
+                checkAllSubmitBtn.removeClass('disabled');
+            } else {
+                checkAllSubmitBtn.addClass('disabled');
+            }
         }
     });
 </script>
