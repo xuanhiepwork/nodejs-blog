@@ -1,5 +1,8 @@
 
-<div class="mt-4">
+<form class="mt-4" name="container-form" method="POST" action="/me/courses/handle-form-actions">
+  {{!-- Không rõ là cái nào thì cứ để nó là method=POST --}}
+
+    {{!-- CSRF Token --}}
     <div>
       <h3>Khóa học của tôi</h3>
       {{!-- Ẩn đi khi thùng rác không có gì --}}
@@ -16,15 +19,9 @@
             Chọn tất cả
           </label>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
-          <label class="form-check-label" for="defaultCheck2">
-            Disabled checkbox
-          </label>
-        </div>
 
-        <select class="form-control form-control-sm checkbox-select-all-options " id="">
-          <option>-- Hành động --</option>
+        <select class="form-control form-control-sm checkbox-select-all-options " name="action" required>
+          <option value="">-- Hành động --</option>
           <option value="delete">Xóa</option>
         </select>
 
@@ -85,7 +82,7 @@
             </tr>
             {{/each}} --}}
         </tbody>
-</div>
+</form>
 
 
 {{!-- Confirm delete course --}}
@@ -117,10 +114,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         var courseID;
         var deleteForm = document.forms['delete-course-form'];
+        var containerForm = document.forms['container-form'];
         var btnDeleteCourse = document.getElementById('btn-delete-course');
         var checkboxAll = $('#checkbox-all');
         var courseItemCheckbox = $('input[name="courseIds[]"]');
         var checkAllSubmitBtn = $('.check-all-submit-btn');
+
         
         // When dialog confirm clicked, it should send a DELETE request to the server
         $('#delete-course-modal').on('show.bs.modal', function (event) {
@@ -128,6 +127,7 @@
             courseID = button.data('id') 
         })
         //console.log(btnDeleteCourse); //Xem có lấy được nút không
+
 
         // When the delete button is clicked, it should submit the form with the DELETE method
         btnDeleteCourse.onclick = function() {
@@ -159,11 +159,56 @@
             renderCheckAllSubmitBtn(); 
         });
 
+
         // Course item checkbox click event
         courseItemCheckbox.on('change', function() {
             var isCheckedAll = courseItemCheckbox.length === courseItemCheckbox.filter(':checked').length; // Số lượng checkbox được chọn bằng tổng số checkbox | Nếu không thì sẽ disable nút "Thực hiện" chọn tất cả
             checkboxAll.prop('checked', isCheckedAll);
         });
+
+
+        // Check all submit button click event
+        // Cách 1: Làm bth
+        checkAllSubmitBtn.on('click', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            if ($(this).hasClass('disabled')) {
+                return; // If the button is disabled, do nothing
+            }
+
+            // Get all checked course IDs
+            var checkedCourseIds = courseItemCheckbox.filter(':checked').map(function() {
+                return $(this).val();
+            }).get();
+
+            if (checkedCourseIds.length > 0) {
+                // Perform the action (e.g., delete) with the selected course IDs
+                console.log('Selected course IDs:', checkedCourseIds);
+                // Here you can send an AJAX request or submit a form with the selected IDs
+            } else {
+                alert('Please select at least one course.');
+            }
+        });
+
+        // Cách 2: jQuery
+        // Ở đây sẽ không dùng nữa vì đã dùng ở trên
+        checkAllSubmitBtn.click(function() {
+          e.preventDefault(); 
+
+          var isSubmitable = !$(this).hasClass('disabled');
+          if (isSubmitable) {
+              containerForm.submit(); // Submit the form if the button is not disabled
+          }
+        })
+
+
+        // Prevent form submission if the button is disabled
+        checkAllSubmitBtn.on('submit', function(e) {
+          var isSubmitable = !$(this).hasClass('disabled');
+          if (!isSubmitable) {
+              e.preventDefault();
+          }
+        });
+
 
         // Re-render the "Select All" button based on the state of individual checkboxes
         function renderCheckAllSubmitBtn() {

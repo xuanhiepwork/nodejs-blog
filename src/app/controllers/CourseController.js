@@ -88,6 +88,29 @@ class CourseController {
             .then(() => res.redirect('back')) 
             .catch(next); 
     }
+
+    // [POST] /courses/handle-form-actions
+    handleFormActions(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Course.delete({ _id: { $in: req.body.courseIds } }) // xóa các khóa học theo id
+                    .then(() => res.redirect('back')) 
+                    .catch(next); 
+                break;
+            case 'restore':
+                Course.restore({ _id: { $in: req.body.courseIds } }) // khôi phục các khóa học đã xóa mềm
+                    .then(() => res.redirect('back')) 
+                    .catch(next); 
+                break;
+            case 'force':
+                Course.deleteMany({ _id: { $in: req.body.courseIds } }) // xóa vĩnh viễn các khóa học theo id
+                    .then(() => res.redirect('back')) 
+                    .catch(next); 
+                break;
+            default:
+                res.redirect('back'); // nếu không có hành động nào thì chuyển hướng về trang trước đó
+        }
+    }
 }
 
 module.exports = new CourseController();
